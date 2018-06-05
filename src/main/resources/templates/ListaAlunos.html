@@ -10,9 +10,10 @@
 	<body>
 		<form class="form-inline" method="POST" th:object="${aluno}" style="margin: 20px 0" th:action="@{/alunos}">
 			<div class="form-group">
+				<input type="hidden" th:field="*{id}"/>    
 				<input type="text" class="form-control" placeholder="Nome" th:field="*{nome}"/>
 				<input type="text" class="form-control" placeholder="Matricula" th:field="*{matricula}"/>
-				<button type="submit" class="btn btn-primary">Adicionar</button>
+				<button type="submit" class="btn btn-primary">Salvar</button>
 			</div>
 		</form>
 	
@@ -26,12 +27,19 @@
 						<tr>
 							<th>Nome</th>
 							<th>Matricula</th>
+							<th colspan="2">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="aluno : ${alunos}">
 							<td th:text="${aluno.nome}"></td>
 							<td th:text="${aluno.matricula}"></td>
+							<td>
+								<a th:href="@{/alunos/alterar/} + ${aluno.id}" class="glyphicon glyphicon-pencil"></a>
+							</td>
+							<td>
+								<a th:href="@{/alunos/excluir/} + ${aluno.id}" class="glyphicon glyphicon-trash"></a>
+							</td>
 						</tr>
 					</tbody>
 				</table>
