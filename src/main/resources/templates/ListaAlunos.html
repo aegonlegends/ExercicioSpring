@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name= "viewport" content="width=device-width"/>
+		<title>Lista de Alunos</title>
+		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+		<link th:href="@{/css/bootstrap-theme.min.css}" rel="stylesheet"/>
+	</head>
+	<body>
+		<form class="form-inline" method="POST" th:object="${aluno}" style="margin: 20px 0" th:action="@{/alunos}">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Nome" th:field="*{nome}"/>
+				<input type="text" class="form-control" placeholder="Matricula" th:field="*{matricula}"/>
+				<button type="submit" class="btn btn-primary">Adicionar</button>
+			</div>
+		</form>
+	
+		<div class="panel panel-default" style="margin: 10px">
+			<div class="panel-heading">
+				<h1 class="panel-title">Lista de alunos</h1>
+			</div>
+			<div class="panel-body">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Matricula</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="aluno : ${alunos}">
+							<td th:text="${aluno.nome}"></td>
+							<td th:text="${aluno.matricula}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
